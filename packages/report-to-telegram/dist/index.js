@@ -16,8 +16,7 @@ function reportToTelegramPlugin(opts) {
             if (order.learning || order?.time < curTime) {
                 return;
             }
-            const data = order.orderId.split('-');
-            const message = `${data[1]}\nlots:${order.lots}\nprice:${data[2]}`;
+            const message = `broker:${this.debut.opts.broker}\n${order.type}\nlots:${order.lots}\nprice:${order.price}\nticker:${this.debut.opts.ticker}`;
             try {
                 await axios_1.default.get(url, {
                     params: {

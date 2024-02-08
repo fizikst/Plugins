@@ -46,14 +46,13 @@ export function reportToTelegramPlugin(opts: ReportToTelegramOptions): PluginInt
                 return;
             }
 
-            const data = order.orderId.split('-')
-
-            const profit = orders.getCurrencyProfit(closing, +data[2]);
+            const profit = orders.getCurrencyProfit(closing, +order.price);
             let reply_to_message_id = null
             if (order?.openId && messageHistory[order.openId]) {
                 reply_to_message_id = messageHistory[order.openId]
             }
-            const message = `${data[1]}\nlots:${order.lots}\nprice:${data[2]}\nprofit: ${profit}\nbalance:${this.debut.opts.amount}`
+            const message = `broker:${this.debut.opts.broker}\n${order.type}\nlots:${order.lots}\nprice:${order.price}\nticker:${this.debut.opts.ticker}`
+
 
             try {
                 await axios.get(url, {
