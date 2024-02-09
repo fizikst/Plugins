@@ -51,7 +51,7 @@ export function reportToTelegramPlugin(opts: ReportToTelegramOptions): PluginInt
             if (order?.openId && messageHistory[order.openId]) {
                 reply_to_message_id = messageHistory[order.openId]
             }
-            const message = `broker:${this.debut.opts.broker}\n${order.type}\nlots:${order.lots}\nprice:${order.price}\nticker:${this.debut.opts.ticker}`
+            const message = `broker:${this.debut.opts.broker}\n${order.type}\nlots:${order.lots}\nprice:${order.price}\nticker:${this.debut.opts.ticker}\nprofit:${profit}`
 
 
             try {
